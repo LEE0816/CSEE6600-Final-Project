@@ -11,7 +11,7 @@ wordList = [word.strip('\n') for word in words]
 def getAsso(word): 
     response = unirest.post("https://twinword-word-associations-v1.p.mashape.com/associations/",
         headers={
-            "X-Mashape-Key": "hFZZvxJOTgmshQo69irFYXDKkym4p1VuY4LjsnPoUZdgwchbK2",
+            "X-Mashape-Key": "YOUR_API_KEY",
             "Content-Type": "application/x-www-form-urlencoded",
             "Accept": "application/json"
         },
@@ -38,7 +38,7 @@ def getType(word):
 def getTypeList(word): 
     response = unirest.get("https://wordsapiv1.p.mashape.com/words/" + word,
         headers={
-            "X-Mashape-Key": "KnbMcsBQRpmshgEZs2hU4sAGB9qLp1EGi6rjsnXS1uGwKgmuFZ",
+            "X-Mashape-Key": "YOUR_API_KEY",
             "Accept": "application/json"
         }
     )
