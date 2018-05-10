@@ -2,11 +2,9 @@ from nltk.stem import PorterStemmer
 from nltk.tokenize import sent_tokenize, word_tokenize
 import unirest
 
-
 with open('./concretenouns') as f: 
     words = f.readlines()
 wordList = [word.strip('\n') for word in words]
-
 
 def getAsso(word): 
     response = unirest.post("https://twinword-word-associations-v1.p.mashape.com/associations/",
@@ -20,6 +18,7 @@ def getAsso(word):
         }
     )
     return response.body
+
 def getType(word): 
     if "-" in word: 
         word.replace('-', ' ')
@@ -35,6 +34,7 @@ def getType(word):
         if assoType in typeList: 
             typeList.append(assoType)
     return mostCommon(typeList)
+
 def getTypeList(word): 
     response = unirest.get("https://wordsapiv1.p.mashape.com/words/" + word,
         headers={
@@ -51,11 +51,14 @@ def getTypeList(word):
     for i in range(len(typeList)): 
         typeList[i] = typeList[i].split(' ')[-1]
     return typeList
+
 def mostCommon(lst): 
     return max(set(lst), key=lst.count)
+
 def getStem(word): 
     ps = PorterStemmer()
     return ps.stem(word)
+
 def getTypeDict(): 
     typeDict = {}
     pBar = progressbar.ProgressBar()
