@@ -13,5 +13,3 @@ L = []
 for root, dirs, files in os.walk("static/img/downloads"):
     for file in files:
        L.append(os.path.join(root, file))
-
-
