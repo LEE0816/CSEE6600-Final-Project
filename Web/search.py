@@ -53,8 +53,6 @@ def searchImage(word):
     print mapped
     searchword  = word + " " + obj + " as a " + objType
     
-
-
     response = google_images_download.googleimagesdownload()
     arguments = {"keywords": searchword, "limit": 20, "print_urls": False, "metadata": False}
     response.download(arguments)
@@ -62,31 +60,16 @@ def searchImage(word):
     shutil.rmtree("static/img/downloads")
     # move folder
     shutil.move("downloads", "static/img/downloads")
-
-
+    
     fileIdx = 1
     for file in os.listdir('static/img/downloads/'+str(searchword)):   
         new_name = str(fileIdx) + file[-4:] 
         os.rename('static/img/downloads/'+str(searchword) + '/' + file, 'static/img/downloads/'+str(searchword) + '/' + new_name)
         fileIdx+=1
-
-
-
+    
     L = []
     for root, dirs, files in os.walk("static/img/downloads"):
         for file in files:
             L.append(os.path.join(root, file))
     L.insert(0,[str(searchword)])
     return L
-
-
-
-
-
-
-
-
-
-
-
-
